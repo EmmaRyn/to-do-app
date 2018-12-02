@@ -3,19 +3,28 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>To-Do App</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <h1>To-Do App</h1>
+    <header id="to-do-header" class="mdl-layout__header">
+      <h1 class="mdl-layout-title">To-Do App</h1>
+    </header>
+    <main id="to-do-main" class="mdl-layout__content mdl-grid">
+      <div id="to-do-container" class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-card mdl-shadow--4dp">
+        <form id="addToDoForm" class="mdl-grid mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+          <label for="newToDoText" class="mdl-textfield__label mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet">New To-Do:</label>
+          <input type="text" id="newToDoText" class="mdl-textfield__input mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+          <button type="submit" class="mdl-button mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet">
+            Add To-Do!
+          </button>
+        </form>
 
-    <form id="addToDoForm">
-      <label for="newToDoText">New To-Do:</label>
-      <input type="text" id="newToDoText">
-      <button type="submit">Add To-Do!</button>
-    </form>
-
-    <ul id="toDoList">
-    </ul>
-
+        <ul id="toDoList" class="mdl-grid mdl-list mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+        </ul>
+      </div>
+    </main>
     <script src="app.js"></script>
   </body>
 </html>
