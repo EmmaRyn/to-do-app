@@ -1,0 +1,103 @@
+body {
+  background-color: darkgray;
+}
+
+#to-do-header {
+  background-color: darkblue;
+  width: 100%;
+}
+
+#to-do-header h1 {
+  font-weight: bold;
+  font-size: 2em;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  color: lightgray;
+}
+main {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#to-do-container {
+  width: 75%;
+  justify-content: center;
+  margin: auto;
+  background-color: lightgray;
+}
+
+#addToDoForm {
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  height: 15%;
+}
+
+#addToDoForm label {
+  color: darkblue;
+  position: relative;
+  margin-top: 0;
+  width: 20%;
+}
+
+#addToDoForm input {
+  width: 50%;
+}
+
+#addToDoForm button, #toDoList button {
+  color: darkblue;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+  min-width: 10rem;
+  width: 20%;
+}
+
+#toDoList > li {
+  padding: 0px 0px;
+  margin: 0;
+}
+
+#toDoList input {
+  margin: auto 0;
+  width: 10%;
+}
+
+#toDoList > li > span {
+  color: darkblue;
+  text-align: left;
+  margin: auto 0;
+  width: 60%;
+}
+
+#toDoList button {
+  min-width: 6rem;
+}
+
+@media screen (min-width:1024px) {
+  #toDoList button {
+    margin: auto 0;
+  }
+}
+
+@media screen and (max-width:1024px) {
+  #to-do-main {
+    padding: 0;
+  }
+
+  #to-do-container {
+    width: 100%;
+  }
+
+  #addToDoForm label {
+    height: 50px;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width:732px) {
+  #addToDoForm label, #addToDoForm input {
+    width: 100%;
+  }
+}
