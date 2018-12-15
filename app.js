@@ -1,6 +1,14 @@
 function onReady() {
-  const toDos = [];
+  let id = 0;
+  let toDos = [];
   const addToDoForm = document.getElementById('addToDoForm');
+
+  const storedToDos = localStorage.getItem("toDos");
+  if (storedToDos != '[]') {
+    toDos = JSON.parse(storedToDos);
+    id = toDos[toDos.length-1].id + 1;
+    renderTheUI();
+  }
 
   function createNewToDo() {
     const newToDoText = document.getElementById('newToDoText');
@@ -8,8 +16,11 @@ function onReady() {
 
     toDos.push({
       title: newToDoText.value,
-      complete: false
+      complete: false,
+      id: id
     });
+
+    id = id + 1;
 
     newToDoText.value = '';
 
@@ -27,55 +38,36 @@ function onReady() {
     // create a new input
     let checkbox = document.createElement('input');
 
-    // create a delete button
-    let deleteButton = document.createElement('button');
-
-    // set the input's type to checkbox
-    checkbox.type = "checkbox";
-
-    // set type and text for delete buttons
-    deleteButton.type = "button";
-    deleteButton.textContent = 'Delete';
-    deleteButton.classList.add('mdl-button');
-
-    // set onclick action for delete button
-    deleteButton.onclick = function() {
-      toDoList.removeChild(newLi);
-    };
-
-    // set the title and css classes
-    span.textContent = title;
-    newLi.classList.add('mdl-list__item');
-    newLi.classList.add('mdl-grid');
-    newLi.classList.add('mdl-cell');
-    newLi.classList.add('mdl-cell--12-col');
-    newLi.classList.add('mdl-cell--12-col-tablet');
-    checkbox.classList.add('mdl-cell');
-    checkbox.classList.add('mdl-cell--1-col');
-    checkbox.classList.add('mdl-cell--1-col-tablet');
-    span.classList.add('mdl-cell');
-    span.classList.add('mdl-cell--7-col');
-    span.classList.add('mdl-cell--7-col-tablet');
-    deleteButton.classList.add('mdl-cell');
-    deleteButton.classList.add('mdl-cell--2-col');
-    deleteButton.classList.add('mdl-cell--2-col-tablet');
+    toDos.forEach(function(toDo) {
+      const newLi = document.createElement('li');
+      const checkbox = document.createElement('input');
+      const deleteButton = document.createElement('button');
+      checkbox.type = "checkbox";
 
       newLi.textContent = toDo.title;
+      deleteButton.textContent = 'Delete';
 
-    // attach the span to the li
-    newLi.appendChild(span);
+      toDoList.appendChild(newLi);
+      newLi.appendChild(checkbox);
+      newLi.appendChild(deleteButton);
 
-    // add delete button to li
-    newLi.appendChild(deleteButton);
+      checkbox.addEventListener('click', event => {
+        toDo.complete = checkbox.checked;
+      });
 
-    // attach the li to the ul
-    toDoList.appendChild(newLi);
+      deleteButton.addEventListener('click', event => {
+        event.preventDefault();
+        toDos = toDos.filter(function(listItem) {
+          return toDo.id != listItem.id;
+        });
 
-    // empty the input
-    newToDoText.value = '';
+        renderTheUI();
+      });
+    });
 
-  });
-};
+    localStorage.setItem("toDos", JSON.stringify(toDos));
+  };
+}
 
 window.onload = function() {
   onReady();
